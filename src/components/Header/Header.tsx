@@ -4,7 +4,6 @@ import { HOME, ARCHIVE } from "../../constants/routes";
 const Header = (): JSX.Element => {
   return (
     <header>
-      HEADER
       <Link to={HOME} data-testid="logo-home-link">
         APOD
         <img
@@ -12,7 +11,11 @@ const Header = (): JSX.Element => {
           alt="Astronomy Picture of the Day"
         />
       </Link>
-      <Link to={ARCHIVE} data-testid="archive-link">
+      <Link
+        to={ARCHIVE}
+        className="text-3xl font-bold underline"
+        data-testid="archive-link"
+      >
         ARCHIVE
       </Link>
     </header>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
+import "./index.css";
 
 function App(): JSX.Element {
   const [isReady, setIsReady] = useState(false);
