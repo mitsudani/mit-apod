@@ -4,6 +4,11 @@ import Loader from "../Loader/Loader";
 
 const Apod = (): JSX.Element => {
   const { isLoading, error, data } = useGetApod();
+  const [loaded, setLoaded] = useState(false);
+
+  const hasLoaded = () => {
+    setLoaded(true);
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -23,8 +28,14 @@ const Apod = (): JSX.Element => {
           <p className="bg-cyan-500">{date}</p>
           <div className="bg-blue-500 row-span-2">
             <a href={hdurl} target="_blank" rel="noopener noreferrer">
-              <img src={url} alt="Today's picture" />
+              <img
+                src={url}
+                alt="Today's picture"
+                onLoad={hasLoaded}
+                style={loaded ? {} : { display: "none" }}
+              />
             </a>
+            {!loaded && <Loader />}
           </div>
           <p className="bg-violet-500">{explanation}</p>
           <p className="bg-pink-500 col-start-2">Copyright: {copyright}</p>
