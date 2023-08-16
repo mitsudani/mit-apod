@@ -12,7 +12,8 @@ type TApodResponse = {
   url: string;
 };
 
-const useGetApod = (params?: Record<string, string>) => {
+const useGetApod = (params?: Record<string, any>) => {
+  const parameters = new URLSearchParams(params).toString();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setData] = useState<TApodResponse>({
@@ -25,9 +26,11 @@ const useGetApod = (params?: Record<string, string>) => {
   });
 
   useEffect(() => {
-    fetch(`${APOD}?api_key=${APOD_KEY}`)
+    setIsLoading(true);
+    fetch(`${APOD}?api_key=${APOD_KEY}${params ? `&${parameters}` : ""}`)
       .then((response) => {
         if (response.ok) {
+          setError("");
           return response.json();
         }
         throw new Error(`Error: ${response.status} - Something went wrong`);
@@ -35,7 +38,7 @@ const useGetApod = (params?: Record<string, string>) => {
       .then((result) => setData(result))
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false));
-  }, [params]);
+  }, [parameters]);
 
   return {
     data: data,

@@ -1,18 +1,38 @@
+import { useState } from "react";
+import { format, subDays } from "date-fns";
+import DatePicker from "react-date-picker";
 import useGetApod from "../../hooks/useGetApod";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+import Loader from "../Loader/Loader";
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Archive = (): JSX.Element => {
-  const { isLoading, error, data } = useGetApod();
+  const today = subDays(new Date(), 1);
+  const [selectedDate, setSelectedDate] = useState<Value>(today);
+  const { isLoading, error, data } = useGetApod({
+    date: format(selectedDate as Date, "yyyy-MM-dd"),
+  });
 
   if (isLoading) {
-    return <>Cargando..</>;
+    return <Loader />;
   }
 
   const { copyright, date, explanation, hdurl, title, url } = data;
 
   return (
     <section className="bg-red-500">
-      <h2>ASTRONOMY PICTURE OF THE DAY</h2>
+      <h2>Astronomy Picture of the Day Calendar</h2>
       <h3>Today's Picture</h3>
+
+      <DatePicker
+        onChange={setSelectedDate}
+        value={selectedDate}
+        maxDate={today}
+        minDate={new Date("1995-06-16")}
+      />
+
       {error ? (
         <p>{error}</p>
       ) : (

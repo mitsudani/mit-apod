@@ -1,10 +1,12 @@
+import { useState, useRef, useEffect } from "react";
 import useGetApod from "../../hooks/useGetApod";
+import Loader from "../Loader/Loader";
 
 const Apod = (): JSX.Element => {
   const { isLoading, error, data } = useGetApod();
 
   if (isLoading) {
-    return <>Cargando..</>;
+    return <Loader />;
   }
 
   const { copyright, date, explanation, hdurl, title, url } = data;
