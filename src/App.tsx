@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 
 function App(): JSX.Element {
   const [isReady, setIsReady] = useState(false);
@@ -10,7 +11,9 @@ function App(): JSX.Element {
 
   return isReady ? (
     <div className="App">
-      <Layout />
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
     </div>
   ) : (
     <div>TODO LOADER COMPONENT</div>

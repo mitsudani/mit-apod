@@ -2,7 +2,7 @@
 // import { HOME } from "../../constants/routes";
 
 const Footer = (): JSX.Element => {
-  return <footer>FOOTER</footer>;
+  return <footer className="bg-green-500">FOOTER</footer>;
 };
 
 export default Footer;
