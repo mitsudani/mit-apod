@@ -2,7 +2,7 @@ import { RevolvingDot } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <div className="flex flex-wrap flex-col justify-center content-center w-full h-[calc(100vh-72px)]">
+    <div className="flex flex-wrap flex-col justify-center content-center w-full max-h-[40rem]">
       <p className="text-center">Loading...</p>
       <RevolvingDot
         width="100"

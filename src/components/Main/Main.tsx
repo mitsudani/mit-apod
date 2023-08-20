@@ -9,7 +9,7 @@ interface IMain {
 const Main = ({ children }: IMain) => {
   return (
     <ScrollToTop>
-      <main>
+      <main className="bg-lilac min-h-[calc(100vh-72px)]">
         <Routes>{children}</Routes>
       </main>
     </ScrollToTop>

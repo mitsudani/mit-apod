@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { format, subDays } from "date-fns";
 import DatePicker from "react-date-picker";
 import useGetApod from "../../hooks/useGetApod";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import Loader from "../Loader/Loader";
+import ImageCard from "../ImageCard/ImageCard";
+import Container from "../Container/Container";
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -14,11 +16,6 @@ const Archive = (): JSX.Element => {
   const { isLoading, error, data } = useGetApod({
     date: format(selectedDate as Date, "yyyy-MM-dd"),
   });
-  const [loaded, setLoaded] = useState(false);
-
-  const hasLoaded = () => {
-    setLoaded(true);
-  };
 
   if (isLoading) {
     return <Loader />;
@@ -27,42 +24,46 @@ const Archive = (): JSX.Element => {
   const { copyright, date, explanation, hdurl, title, url } = data;
 
   return (
-    <section className="bg-red-500">
-      <h2>Astronomy Picture of the Day Calendar</h2>
-      <h3>Today's Picture</h3>
-
-      <DatePicker
-        onChange={(val: Value) => {
-          setLoaded(false);
-          setSelectedDate(val);
-        }}
-        value={selectedDate}
-        maxDate={today}
-        minDate={new Date("1995-06-16")}
-      />
-
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        <div className="grid grid-cols-2 gap-4">
-          <p className="bg-yellow-500">{title}</p>
-          <p className="bg-cyan-500">{date}</p>
-          <div className="bg-blue-500 row-span-2">
-            <a href={hdurl} target="_blank" rel="noopener noreferrer">
-              <img
-                src={url}
-                alt="Today's picture"
-                style={loaded ? {} : { display: "none" }}
-                onLoad={hasLoaded}
-              />
-            </a>
-            {!loaded && <Loader />}
-          </div>
-          <p className="bg-violet-500">{explanation}</p>
-          <p className="bg-pink-500 col-start-2">Copyright: {copyright}</p>
+    <Container>
+      <section>
+        <h2 className="text-center text-4xl font-bold">
+          Astronomy Picture of the Day Calendar
+        </h2>
+        <h3 className="text-center text-3xl">
+          Choose a day to show its picture:
+        </h3>
+        <div className="flex flex-col items-center justify-center">
+          <DatePicker
+            className="my-5 bg-white"
+            onChange={setSelectedDate}
+            value={selectedDate}
+            maxDate={today}
+            minDate={new Date("1995-06-16")}
+          />
+          {error ? (
+            <p>{error}</p>
+          ) : (
+            <div className="grid grid-cols-2 gap-4">
+              <p className="bg-blue rounded-3xl text-white text-center font-bold text-2xl p-3">
+                {date}
+              </p>
+              <p className="bg-blue rounded-3xl text-white font-bold text-2xl p-3">
+                {title}
+              </p>
+              <div className="row-span-2 flex justify-center">
+                <ImageCard url={url} hdurl={hdurl} />
+              </div>
+              <p className="bg-violet text-white rounded-3xl p-4">
+                {explanation}
+              </p>
+              <p className="bg-greyish text-white col-start-2 rounded-3xl p-4">
+                Copyright: {copyright}
+              </p>
+            </div>
+          )}
         </div>
-      )}
-    </section>
+      </section>
+    </Container>
   );
 };
 
