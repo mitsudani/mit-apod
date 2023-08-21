@@ -5,7 +5,7 @@ import apodLogo from "../../assets/apod_logo.png";
 const Header = (): JSX.Element => {
   return (
     <header
-      className="flex flex-row justify-items-start items-center content-center gap-x-4 bg-violet h-[6rem] px-7 py-4"
+      className="flex flex-row justify-items-start items-center content-center gap-x-4 bg-violet h-[5rem] px-7 py-4"
       data-testid="header"
     >
       <Link

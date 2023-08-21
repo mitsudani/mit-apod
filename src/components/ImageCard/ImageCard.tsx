@@ -24,6 +24,7 @@ const ImageCard = ({ hdurl, url }: IImageCard) => {
         target="_blank"
         rel="noopener noreferrer"
         className="contents"
+        data-testid="apod-image-link"
       >
         <img
           className="rounded-3xl max-h-[35rem]"
