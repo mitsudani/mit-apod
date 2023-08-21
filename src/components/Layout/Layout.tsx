@@ -4,8 +4,8 @@ import Footer from "../Footer";
 import Home from "../Home";
 import Apod from "../Apod";
 import Archive from "../Archive";
-import { HOME, ARCHIVE, APOD } from "../../constants/routes";
 import Main from "../Main/Main";
+import { HOME, ARCHIVE, APOD } from "../../constants/routes";
 
 const Layout = (): JSX.Element => (
   <>
