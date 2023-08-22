@@ -26,7 +26,7 @@ const Header = (): JSX.Element => {
             <NavLink
               to={APOD}
               className={({ isActive }) =>
-                isActive ? "text-lightblue" : "text-white"
+                isActive ? "text-lightblue" : "text-white hover:text-lightblue"
               }
               data-testid="apod-link"
             >
@@ -38,7 +38,7 @@ const Header = (): JSX.Element => {
             <NavLink
               to={ARCHIVE}
               className={({ isActive }) =>
-                isActive ? "text-lightblue" : "text-white"
+                isActive ? "text-lightblue" : "text-white hover:text-lightblue"
               }
               data-testid="archive-link"
             >
