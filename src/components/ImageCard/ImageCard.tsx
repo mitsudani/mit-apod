@@ -27,7 +27,7 @@ const ImageCard = ({ hdurl, url }: IImageCard) => {
         data-testid="apod-image-link"
       >
         <img
-          className="rounded-3xl max-h-[35rem]"
+          className="rounded-3xl max-h-[30rem]"
           src={url}
           alt="Today's picture"
           onLoad={hasLoaded}
