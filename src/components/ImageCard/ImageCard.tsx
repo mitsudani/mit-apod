@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Loader from "../Loader/Loader";
 
 interface IImageCard {
@@ -7,10 +7,14 @@ interface IImageCard {
 }
 
 const ImageCard = ({ hdurl, url }: IImageCard) => {
-  const [loaded, setLoaded] = useState(false);
+  const isYoutubeVideo = url.includes("youtube");
+  const [loaded, setLoaded] = useState(isYoutubeVideo);
+  const prevUrl = useRef(url);
 
   useEffect(() => {
-    setLoaded(false);
+    if (prevUrl.current !== url) {
+      setLoaded(false);
+    }
   }, [url]);
 
   const hasLoaded = () => {
@@ -26,13 +30,18 @@ const ImageCard = ({ hdurl, url }: IImageCard) => {
         className="contents"
         data-testid="apod-image-link"
       >
-        <img
-          className="rounded-3xl max-h-[30rem]"
-          src={url}
-          alt="Today's picture"
-          onLoad={hasLoaded}
-          style={loaded ? {} : { display: "none" }}
-        />
+        {isYoutubeVideo ? (
+          <iframe width="420" height="315" src={url} />
+        ) : (
+          <img
+            className="rounded-3xl max-h-[30rem]"
+            src={url}
+            alt="Today's picture"
+            onLoad={hasLoaded}
+            style={loaded ? {} : { display: "none" }}
+            data-testid="apod-image"
+          />
+        )}
       </a>
       {!loaded && <Loader />}
     </>

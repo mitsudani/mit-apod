@@ -20,7 +20,7 @@ const Info = ({ date, title, url, hdurl, explanation, copyright }: IInfo) => {
       </p>
       <p
         className="bg-blue rounded-3xl text-white font-bold text-2xl p-3"
-        data-testid="apod-date"
+        data-testid="apod-title"
       >
         {title}
       </p>

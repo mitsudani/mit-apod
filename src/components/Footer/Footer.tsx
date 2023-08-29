@@ -33,7 +33,10 @@ const Footer = (): JSX.Element => {
           NASA Open APIs
         </a>
       </div>
-      <div className="flex flex-row items-center gap-x-4">
+      <div
+        className="flex flex-row items-center gap-x-4"
+        data-testid="social-links-container"
+      >
         <p>Created by Mit:</p>
         <a
           href={GITHUB}

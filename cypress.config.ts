@@ -5,5 +5,7 @@ export default defineConfig({
     baseUrl: "http://localhost:5173",
     viewportWidth: 1920,
     viewportHeight: 1080,
+    screenshotOnRunFailure: true,
+    trashAssetsBeforeRuns: true,
   },
 });

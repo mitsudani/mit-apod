@@ -7,15 +7,21 @@ import "react-calendar/dist/Calendar.css";
 import Loader from "../Loader/Loader";
 import Container from "../Container/Container";
 import Info from "../Info/Info";
+
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Archive = (): JSX.Element => {
   const today = subDays(new Date(), 1);
-  const [selectedDate, setSelectedDate] = useState<Value>(today);
+  const [pickerDate, setPickerDate] = useState<Value>(today);
+  const [selectedDate, setSelectedDate] = useState<Value>(pickerDate);
   const { isLoading, error, data } = useGetApod({
-    date: format(selectedDate as Date, "yyyy-MM-dd"),
+    date: selectedDate ? format(selectedDate as Date, "yyyy-MM-dd") : "",
   });
+
+  const updateDate = () => {
+    setSelectedDate(pickerDate);
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -36,14 +42,24 @@ const Archive = (): JSX.Element => {
           Choose a day to show its picture:
         </h3>
         <div className="flex flex-col items-center justify-center">
-          <DatePicker
-            className="my-5 bg-white rounded-3xl border-none"
-            onChange={setSelectedDate}
-            value={selectedDate}
-            maxDate={today}
-            minDate={new Date("1995-06-16")}
-            data-testid="datepicker"
-          />
+          <div className="w-full flex items-center justify-center">
+            <DatePicker
+              className="my-5 bg-white rounded-3xl border-none"
+              onChange={setPickerDate}
+              value={pickerDate}
+              maxDate={today}
+              minDate={new Date("1995-06-16")}
+              format="y-MM-dd"
+              data-testid="datepicker"
+            />
+            <button
+              className="bg-violet rounded-3xl text-white py-0.5 px-4 ml-2"
+              onClick={updateDate}
+              data-testid="search-button"
+            >
+              Search
+            </button>
+          </div>
           {error ? (
             <p>{error}</p>
           ) : (

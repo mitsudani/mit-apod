@@ -14,7 +14,6 @@ const Loader = () => {
         wrapperStyle={{ outerHeight: "100px" }}
         wrapperClass="flex-wrap"
         visible={true}
-        data-testid="loader"
       />
     </div>
   );
