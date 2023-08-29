@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import Container from "../Container";
+import { APOD } from "../../constants/routes";
 
 const Home = (): JSX.Element => {
   return (
@@ -23,14 +25,22 @@ const Home = (): JSX.Element => {
             <div className="bg-violet rounded-3xl p-3 hover:brightness-125">
               <h2 className="text-2xl font-bold mb-4">Today's Picture</h2>
               <p className="leading-loose">
-                Click here to see today's picture.
+                Click{" "}
+                <Link
+                  to={APOD}
+                  className="underline"
+                  data-testid="home-apod-link"
+                >
+                  here
+                </Link>{" "}
+                to see today's picture.
               </p>
             </div>
             <div className="bg-blue rounded-3xl p-3 hover:brightness-125">
               <h2 className="text-2xl font-bold mb-4">Archive</h2>
               <p className="leading-loose">
-                Search for pictures by year, month and day. The archive starts
-                in June 15th, 1995.
+                Search for pictures by year, month and day (from in June 15th,
+                1995 to the present).
               </p>
             </div>
           </div>

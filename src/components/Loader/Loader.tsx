@@ -8,7 +8,7 @@ const Loader = () => {
         width="100"
         height="100"
         radius={50}
-        color="#4fa94d"
+        color="#282b75"
         secondaryColor=""
         ariaLabel="revolving-dot-loading"
         wrapperStyle={{ outerHeight: "100px" }}
