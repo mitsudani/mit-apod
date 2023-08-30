@@ -25,6 +25,7 @@ describe("Footer", () => {
       "href",
       NASA_API
     );
+    cy.wait(6000);
     cy.get('[data-testid="github-link"]').should("have.attr", "href", GITHUB);
     cy.get('[data-testid="stackoverflow-link"]').should(
       "have.attr",

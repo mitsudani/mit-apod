@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { APOD } from "../constants/endpoints";
 import { APOD_KEY } from "../constants/env";
-//import mock from "../components/Apod/datamock.json";
 
 type TApodResponse = {
   copyright: string;

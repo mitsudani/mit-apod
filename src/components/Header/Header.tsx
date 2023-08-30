@@ -17,7 +17,7 @@ const Header = (): JSX.Element => {
           src={apodLogo}
           className="max-h-[4rem]"
           alt="Astronomy Picture of the Day logo"
-          data-testid="header-home-link-image"
+          data-testid="header-logo-image"
         />
       </Link>
       <nav data-testid="navbar">

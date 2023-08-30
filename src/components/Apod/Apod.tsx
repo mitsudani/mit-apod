@@ -25,7 +25,12 @@ const Apod = (): JSX.Element => {
           Today's Picture
         </h3>
         {error ? (
-          <p>{error}</p>
+          <p
+            className="text-4xl font-bold text-center"
+            data-testid="error-message"
+          >
+            {error}
+          </p>
         ) : (
           <Info
             date={date}

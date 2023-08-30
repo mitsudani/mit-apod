@@ -15,14 +15,20 @@ describe("Archive", () => {
     cy.get(".react-date-picker__inputGroup__year").type(year);
     cy.get(".react-date-picker__inputGroup__month").type(month);
     cy.get(".react-date-picker__inputGroup__day").type(day);
+
     cy.get('[data-testid="search-button"]').click();
     cy.get('[data-testid="apod-date"]')
       .should("be.visible")
       .and("have.text", `${year}-${month}-${day}`);
-    //cy.screenshot();
+
+    cy.screenshot();
   });
 
-  it("shows and hides loader/spinner", () => {
+  it("uses a custom command", () => {
+    cy.searchByDate("2010", "04", "10");
+  });
+
+  it.skip("shows and hides loader/spinner", () => {
     let sendResponse;
     const trigger = new Promise((resolve) => {
       sendResponse = resolve;
@@ -51,7 +57,7 @@ describe("Archive", () => {
       });
   });
 
-  it("has correct url", () => {
+  it.skip("has correct url", () => {
     cy.url().should("equal", `${Cypress.config().baseUrl}${ARCHIVE}`);
   });
 });

@@ -12,6 +12,16 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
+
+Cypress.Commands.add("searchByDate", (year, month, day) => {
+  cy.get(".react-date-picker__inputGroup__year").type(year);
+  cy.get(".react-date-picker__inputGroup__month").type(month);
+  cy.get(".react-date-picker__inputGroup__day").type(day);
+  cy.get('[data-testid="search-button"]').click();
+  cy.get('[data-testid="apod-date"]')
+    .should("be.visible")
+    .and("have.text", `${year}-${month}-${day}`);
+});
 //
 //
 // -- This is a child command --

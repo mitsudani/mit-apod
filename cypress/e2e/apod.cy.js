@@ -2,12 +2,21 @@
 
 import { APOD } from "../../src/constants/routes";
 
-describe("Footer", () => {
-  beforeEach(() => {
+describe("APOD", () => {
+  it("mocks a response from a fixture", () => {
+    cy.intercept("GET", "/planetary/*", { fixture: "apod.json" });
     cy.visit(APOD);
+    cy.pause();
   });
 
-  it("has links with correct routes", () => {
-    cy.intercept("GET", "/planetary/*", { fixture: "apod.json" });
+  it("shows error message when a network error occurs", () => {
+    cy.intercept(
+      { method: "GET", url: "/planetary/*" },
+      { statusCode: 500 }
+    ).as("serverError");
+
+    cy.visit(APOD);
+
+    cy.get('[data-testid="error-message"]').should("be.visible");
   });
 });
