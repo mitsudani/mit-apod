@@ -1,27 +1,52 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# NASA's Astronomy Picture of the Day
 
-Currently, two official plugins are available:
+A small app that uses NASA's APOD (Astronomy Picture of the Day) open API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+## Environment Variables
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+To run this project, you will need to add the following environment variables to your .env file
+
+`VITE_APOD_API_KEY`
+
+You can get your free API key at NASA Open APIs website: https://api.nasa.gov/
+
+API reference can be found on that same website.
+
+
+## Installation and setup
+
+Install dependencies with npm
+
+```bash
+  npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Run Tailwind CSS before starting the server
+
+```bash
+  npm run tw
+```
+
+Starting the server
+
+```bash
+  npm run dev
+```
+    
+## Running e2e tests
+
+```bash
+  npm run cy
+```
+
+
+## Tech Stack
+
+- React
+- JavaScript/TypeScript
+- TailwindCSS
+- Cypress
