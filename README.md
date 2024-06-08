@@ -1,5 +1,5 @@
 
-# NASA's Astronomy Picture of the Day
+# NASA's Astronomy Picture of the Day :stars:
 
 A small app that uses NASA's APOD (Astronomy Picture of the Day) open API
 
